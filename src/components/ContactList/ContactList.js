@@ -1,8 +1,28 @@
 import { Contact } from '../Contact/Contact';
 import { ContactSection, ContactItem } from './ContactList.styled';
 import PropTypes from 'prop-types';
+import { getContacts } from 'redux/selectors';
+import { useSelector } from 'react-redux';
 
+export const ContactList = () => {
+  const contacts = useSelector(getContacts);
+
+  return (
+    <ContactSection>
+      {contacts.map(contact => {
+        return (
+          <ContactItem key={contact.id}>
+            <Contact contact={contact} />
+          </ContactItem>
+        );
+      })}
+    </ContactSection>
+  );
+};
+
+/*
 export const ContactList = ({ contacts, onDeleteContact }) => {
+  
   return (
     <ContactSection>
       {contacts.map(({ name, id, number }) => {
@@ -21,6 +41,9 @@ export const ContactList = ({ contacts, onDeleteContact }) => {
   );
 };
 
+*/
+
+/*
 ContactList.propTypes = {
   contacts: PropTypes.arrayOf(
     PropTypes.shape({
@@ -31,3 +54,4 @@ ContactList.propTypes = {
   ),
   onDeleteContact: PropTypes.func.isRequired,
 };
+*/

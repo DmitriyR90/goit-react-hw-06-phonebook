@@ -1,5 +1,7 @@
 import { Formik } from 'formik';
 import { customAlphabet } from 'nanoid';
+import { useDispatch } from 'react-redux';
+import { addContact } from 'redux/actions';
 import {
   FormWrap,
   FormFeld,
@@ -39,10 +41,13 @@ function validateNumber(number) {
 }
 
 export const ContactForm = ({ onSubmit }) => {
+  const dispatch = useDispatch();
+
   const handleSubmit = (values, actions) => {
-    const id = nanoid();
-    values.id = id;
-    onSubmit(values);
+    // const id = nanoid();
+    // values.id = id;
+    dispatch(addContact(values));
+    // onSubmit(values);
     actions.resetForm();
   };
 
@@ -85,3 +90,18 @@ export const ContactForm = ({ onSubmit }) => {
     </Formik>
   );
 };
+
+/*
+export const ContactForm = ({ onSubmit }) => {
+
+  const dispatch = useDispatch();
+
+  const handleSubmit = (values, actions) => {
+    const id = nanoid();
+    values.id = id;
+    onSubmit(values);
+    actions.resetForm();
+  };
+
+  return (
+  */
