@@ -1,8 +1,17 @@
 import { Formik } from 'formik';
 import { FilterInput, Title, FilterWrap } from './Filter.styled';
-import PropTypes from 'prop-types';
+import { useDispatch, useSelector } from 'react-redux';
+import { setFilter } from 'redux/slice';
+import { getFilter } from 'redux/selectors';
 
-export const Filter = ({ value, onChange }) => {
+export const Filter = () => {
+  const filter = useSelector(getFilter);
+  const dispatch = useDispatch();
+
+  const onChangeFilter = e => {
+    dispatch(setFilter(e.target.value));
+  };
+
   return (
     <FilterWrap>
       <Title>Find contact by name</Title>
@@ -10,8 +19,8 @@ export const Filter = ({ value, onChange }) => {
         <FilterInput
           type="text"
           name="filter"
-          value={value}
-          onChange={onChange}
+          value={filter}
+          onChange={onChangeFilter}
           autoComplete="off"
         ></FilterInput>
       </Formik>
@@ -19,7 +28,7 @@ export const Filter = ({ value, onChange }) => {
   );
 };
 
-Filter.propTypes = {
-  value: PropTypes.string,
-  onChange: PropTypes.func.isRequired,
-};
+// Filter.propTypes = {
+//   value: PropTypes.string,
+//   onChange: PropTypes.func.isRequired,
+// };

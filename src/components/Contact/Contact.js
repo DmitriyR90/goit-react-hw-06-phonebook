@@ -1,7 +1,8 @@
 import { ContactWrap, ContactBtn } from './Contact.styled';
 import PropTypes from 'prop-types';
 import { useDispatch } from 'react-redux';
-import { deleteContact } from 'redux/actions';
+// import { deleteContact } from 'redux/actions';
+import { deleteContact } from 'redux/slice';
 
 export const Contact = ({ contact }) => {
   const { name, number, id } = contact;
@@ -26,18 +27,3 @@ export const Contact = ({ contact }) => {
 //   id: PropTypes.string.isRequired,
 //   onDeleteContact: PropTypes.func.isRequired,
 // };
-
-/*
- return (
-    <ContactWrap>
-      <p>{name}:</p>
-      <p>{number} </p>
-      <ContactBtn
-        type="button"
-        onClick={() => onDeleteContact(id)}
-      >
-        Delete
-      </ContactBtn>
-    </ContactWrap>
-  );
-  */

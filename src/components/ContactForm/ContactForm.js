@@ -1,7 +1,7 @@
 import { Formik } from 'formik';
-import { customAlphabet } from 'nanoid';
-import { useDispatch } from 'react-redux';
-import { addContact } from 'redux/actions';
+import { useDispatch, useSelector } from 'react-redux';
+import { addContact } from 'redux/slice';
+import { getContacts } from 'redux/selectors';
 import {
   FormWrap,
   FormFeld,
@@ -9,8 +9,6 @@ import {
   FormButton,
   ErrorMsg,
 } from './ContactForm.styled';
-
-const nanoid = customAlphabet('1234567890abc', 7);
 
 function validateName(name) {
   let error;
@@ -41,13 +39,22 @@ function validateNumber(number) {
 }
 
 export const ContactForm = ({ onSubmit }) => {
+  const contacts = useSelector(getContacts);
   const dispatch = useDispatch();
 
   const handleSubmit = (values, actions) => {
-    // const id = nanoid();
-    // values.id = id;
+    const allContacts = contacts.map(contact =>
+      contact.name.toLocaleLowerCase()
+    );
+    const newContact = values.name.toLocaleLowerCase();
+
+    if (allContacts.includes(newContact)) {
+      alert(`${values.name} is already in contacts.`);
+      return;
+    }
+
     dispatch(addContact(values));
-    // onSubmit(values);
+
     actions.resetForm();
   };
 
@@ -72,7 +79,6 @@ export const ContactForm = ({ onSubmit }) => {
             {errors.name && touched.name && <ErrorMsg>{errors.name}</ErrorMsg>}
           </FormLabel>
           <FormLabel>
-            {' '}
             Number
             <FormFeld
               id="number"
@@ -90,18 +96,3 @@ export const ContactForm = ({ onSubmit }) => {
     </Formik>
   );
 };
-
-/*
-export const ContactForm = ({ onSubmit }) => {
-
-  const dispatch = useDispatch();
-
-  const handleSubmit = (values, actions) => {
-    const id = nanoid();
-    values.id = id;
-    onSubmit(values);
-    actions.resetForm();
-  };
-
-  return (
-  */
