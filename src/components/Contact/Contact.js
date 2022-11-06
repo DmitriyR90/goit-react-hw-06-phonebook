@@ -1,8 +1,7 @@
 import { ContactWrap, ContactBtn } from './Contact.styled';
-// import PropTypes from 'prop-types';
+import PropTypes from 'prop-types';
 import { useDispatch } from 'react-redux';
-// import { deleteContact } from 'redux/actions';
-import { deleteContact } from 'redux/slice';
+import { deleteContact } from 'redux/contactsSlice';
 
 export const Contact = ({ contact }) => {
   const { name, number, id } = contact;
@@ -21,9 +20,12 @@ export const Contact = ({ contact }) => {
   );
 };
 
-// Contact.propTypes = {
-//   name: PropTypes.string.isRequired,
-//   number: PropTypes.string.isRequired,
-//   id: PropTypes.string.isRequired,
-//   onDeleteContact: PropTypes.func.isRequired,
-// };
+Contact.propTypes = {
+  contacts: PropTypes.arrayOf(
+    PropTypes.shape({
+      name: PropTypes.string.isRequired,
+      id: PropTypes.string.isRequired,
+      number: PropTypes.string.isRequired,
+    })
+  ),
+};

@@ -1,7 +1,7 @@
 import { Formik } from 'formik';
 import { FilterInput, Title, FilterWrap } from './Filter.styled';
 import { useDispatch, useSelector } from 'react-redux';
-import { setFilter } from 'redux/slice';
+import { setFilter } from 'redux/filterSlice';
 import { getFilter } from 'redux/selectors';
 
 export const Filter = () => {
@@ -27,8 +27,3 @@ export const Filter = () => {
     </FilterWrap>
   );
 };
-
-// Filter.propTypes = {
-//   value: PropTypes.string,
-//   onChange: PropTypes.func.isRequired,
-// };

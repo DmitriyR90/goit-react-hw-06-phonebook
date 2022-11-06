@@ -1,6 +1,6 @@
 import { Formik } from 'formik';
 import { useDispatch, useSelector } from 'react-redux';
-import { addContact } from 'redux/slice';
+import { addContact } from 'redux/contactsSlice';
 import { getContacts } from 'redux/selectors';
 import {
   FormWrap,
@@ -38,7 +38,7 @@ function validateNumber(number) {
   return error;
 }
 
-export const ContactForm = ({ onSubmit }) => {
+export const ContactForm = () => {
   const contacts = useSelector(getContacts);
   const dispatch = useDispatch();
 

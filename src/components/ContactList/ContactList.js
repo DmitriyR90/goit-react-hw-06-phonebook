@@ -1,7 +1,7 @@
 import { Contact } from '../Contact/Contact';
 import { ContactSection, ContactItem } from './ContactList.styled';
-import { useSelector } from 'react-redux';
 import { getContacts, getFilter } from 'redux/selectors';
+import { useSelector } from 'react-redux';
 
 export const ContactList = () => {
   const contacts = useSelector(getContacts);
@@ -27,16 +27,3 @@ export const ContactList = () => {
     </ContactSection>
   );
 };
-
-/*
-ContactList.propTypes = {
-  contacts: PropTypes.arrayOf(
-    PropTypes.shape({
-      name: PropTypes.string.isRequired,
-      id: PropTypes.string.isRequired,
-      number: PropTypes.string.isRequired,
-    })
-  ),
-  onDeleteContact: PropTypes.func.isRequired,
-};
-*/
