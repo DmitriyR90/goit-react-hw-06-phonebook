@@ -1,5 +1,5 @@
 import { ContactWrap, ContactBtn } from './Contact.styled';
-import PropTypes from 'prop-types';
+// import PropTypes from 'prop-types';
 import { useDispatch } from 'react-redux';
 // import { deleteContact } from 'redux/actions';
 import { deleteContact } from 'redux/slice';
